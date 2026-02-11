@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diaries</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-100 flex items-center justify-center min-h-screen text-gray-900">
+
+    <div class="max-w-2xl w-full bg-white shadow-lg rounded-lg p-6">
+        <h1 class="text-3xl font-bold text-center text-pink-600 mb-6">📖 My Diaries</h1>
+
+        <div class="text-center mb-4">
+            <a href="{% url 'add_diary' %}" 
+               class="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 transition">
+                + Add New Diary
+            </a>
+        </div>
+
+        {% if diaries %}
+            <ul class="divide-y divide-gray-300">
+                {% for diary in diaries %}
+                    <li class="py-3">
+                        <a href="{% url 'diary_detail' diary.id %}" 
+                           class="text-lg font-semibold text-pink-500 hover:underline">
+                            {{ diary.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-center text-pink-500">No diaries available. Start writing!</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
